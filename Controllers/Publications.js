@@ -83,7 +83,7 @@ export const DelPublication = app.delete("/publicacion/:id", async(req, res) => 
 
 export const GetLastPublications = async(req, res) => {
     try {
-        const allPublicacion = await pool.query("SELECT * FROM publicacion LIMIT 5");
+        const allPublicacion = await pool.query("SELECT * FROM publicacion LIMIT 4");
         res.json(allPublicacion.rows);
     }
     catch (err) {

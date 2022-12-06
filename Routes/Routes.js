@@ -7,7 +7,7 @@ import { refreshToken } from '../Controllers/RefreshToken.js';
 
 const router = express.Router();
 
-router.get('/publicacion', GetAllPublications);
+router.get('/publicaciones', GetAllPublications);
 router.get('/PublicationById/:id', verifyToken, GetPublicationById);
 router.post('/AddPublicacion', AddPublication);
 router.post('/EditPublicacion', verifyToken, EditPublication)

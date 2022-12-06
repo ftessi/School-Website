@@ -5,9 +5,9 @@ CREATE TABLE publicacion(
     title VARCHAR(255),
     description VARCHAR(255),
     image_id VARCHAR(255),
-    publication_date VARCHAR(255),
-    last_edit VARCHAR(255),
-    calendar_date VARCHAR(255),
+    publication_date DATE,
+    last_edit DATE,
+    calendar_date DATE,
 );
 
 CREATE TABLE users(

@@ -15,7 +15,7 @@ app.use(cors);
 
 //New Login
 
-//TESTING USER: username:"2nd User", password:"pass2test"
+//TESTING USER: username:"2nd User", email=:"email@testicles.com", password:"pass2test"
 
 export const Login = async (req, res) => {
     try {
@@ -25,14 +25,12 @@ export const Login = async (req, res) => {
         if (!match) return res.status(400).json({ msg: "Email/Password combination not found" })
         const userID = user.rows[0].userid;
         const name = user.rows[0].username;
-        // a partir de aca no anda
         const accessToken = jwt.sign({ userID, name, email }, process.env.ACCESS_TOKEN_SECRET, {
             expiresIn: '15s'
         });
         const refreshToken = jwt.sign({ userID, name, email }, process.env.REFRESH_TOKEN_SECRET, {
             expiresIn: '1d'
         });
-        //Hay que poner INSERT query para guardar el refresh token en la db
         await pool.query("UPDATE users SET refreshtoken = $1 WHERE userid = $2 ", [refreshToken, userID]);
         res.cookie('refreshToken', refreshToken, {
             httpOnly: true,
